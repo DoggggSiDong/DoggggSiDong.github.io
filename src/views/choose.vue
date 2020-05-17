@@ -1,0 +1,396 @@
+<template>
+  <div>
+    <img src="@/assets/images/cover.png" alt="">
+    <div class="chooseIndex">
+      选择人物<br>
+      开始探索
+    </div>
+    <div class="btn1 choose1 choose" @click="turnPersonChoose1">开始</div>
+    <div class="btn1 choose2 choose" @click="turnPersonChoose2">开始</div>
+    <div class="btn1 choose3 choose" @click="turnPersonChoose3">开始</div>
+    <div class="btn1 choose4 choose" @click="turnPersonChoose4">开始</div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name:'choose',
+    data(){
+      return{
+        list1:[
+          {'id':1,'bg':'les_1','aid':2,'bid':8,'atext':'A. 独自参加舞会','btext':'B. 回复他的邀请','astyle':'left: 0;right: 0;top: 15rem;width: 8rem;height: 3rem;animation-name: btn_animation2;','bstyle':'left: 3rem;right: 0rem;top: 10rem;width: 8rem;height: 3rem;animation-name: btn_animation3;','cid':'','ctext':'','cstyle':''},
+          {'id':2,'bg':'les_4','aid':3,'bid':9,'atext':'A. 先不打扰她','btext':'B. 和她交个朋友','astyle':'right: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation8;','bstyle':'right: 1rem;top: 10rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation9;','cid':'','ctext':'','cstyle':''},
+          {'id':3,'bg':'les_5_1','aid':4,'bid':'','atext':'大二下你终于<br>推掉了其他活动，<br>悄悄加入了ColorsWorld<br>&gt;&gt;&gt;','btext':'','astyle':'right: 0;top: 10rem;width: 15rem;height: 3rem;text-align: left;animation-name: btn_animation10;','bstyle':'','cid':'','ctext':'','cstyle':''},
+          {'id':4,'bg':'les_5_2','aid':5,'bid':'','atext':'NEXT>>>','btext':'','astyle':'left: 10rem;right: 0rem;top: 1rem;width: 5rem;height: 3rem;text-align: left;animation-name: btn_animation11;','bstyle':'','cid':'','ctext':'','cstyle':''},
+          {'id':5,'bg':'les_7','aid':6,'bid':10,'atext':'A. 公开甜蜜','btext':'B. 保持距离','astyle':'right: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation12;','bstyle':'right: 1rem;top: 10rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation1;','cid':'','ctext':'','cstyle':''},
+          {'id':6,'bg':'les_11','aid':7,'bid':11,'atext':'A. 和她谈谈','btext':'B. 静观其变','astyle':'right: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation10;','bstyle':'right: 2rem;top: 10rem;width: 8rem;height: 3rem;text-align: center;animation-name: btn_animation13;','cid':'','ctext':'','cstyle':''},
+          {'id':7,'bg':'les_12','aid':'','bid':'','atext':'点击分享海报','btext':'','astyle':'right:1rem;top:10rem;width:8rem;height:3rem;text-align:right;animation-name:btn_animation1;','bstyle':'','cid':'','ctext':'','cstyle':''},
+
+          {'id':8,'bg':'les_2','aid':12,'bid':16,'atext':'A. 拒绝他','btext':'B. 答应他的告白','astyle':'right: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation8;','bstyle':'right: 1rem;top: 10rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation9;','cid':'','ctext':'','cstyle':''},
+          {'id':9,'bg':'les_6','aid':13,'bid':13,'atext':'A. 保持现状','btext':'B. 试着接触别人','astyle':'left: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: left;animation-name: btn_animation12;','bstyle':'left: 1rem;top: 10rem;width: 8rem;height: 3rem;text-align: left;animation-name: btn_animation1;','cid':'','ctext':'','cstyle':''},
+          {'id':10,'bg':'les_8','aid':17,'bid':17,'atext':'A. 保持现状','btext':'B. 走出圈子','astyle':'left: 2rem;top: 15rem;width: 8rem;height: 3rem;text-align: center;animation-name: btn_animation12;','bstyle':'left: 2rem;top: 10rem;width: 8rem;height: 3rem;text-align: center;animation-name: btn_animation1;','cid':'','ctext':'','cstyle':''},
+          {'id':11,'bg':'les_13','aid':'','bid':'','atext':'点击分享海报','btext':'','astyle':'left: 0;right: 0;top: 15rem;width: 8rem;height: 3rem;text-align: center;animation-name: btn_animation12;','bstyle':'','cid':'','ctext':'','cstyle':''},
+
+          {'id':12,'bg':'les_4','aid':3,'bid':9,'atext':'A. 先不打扰她','btext':'B. 和她交个朋友','astyle':'right: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation8;','bstyle':'right: 1rem;top: 10rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation9;','cid':'','ctext':'','cstyle':''},
+          {'id':13,'bg':'les_7','aid':14,'bid':10,'atext':'A. 公开甜蜜','btext':'B. 保持距离','astyle':'right:1rem;top: 15rem; width: 8rem;height: 3rem; text-align: right;animation-name: btn_animation12','bstyle':'right:1rem; top: 10rem; width: 8rem; height: 3rem; text-align: right;animation-name:btn_animation1','cid':'','ctext':'','cstyle':''},
+          {'id':14,'bg':'les_11','aid':15,'bid':11,'atext':'A. 和她谈谈','btext':'B. 静观其变','astyle':'right:1rem;top: 15rem; width: 8rem;height: 3rem; text-align: right;animation-name: btn_animation10','bstyle':'right:2rem; top: 10rem; width: 8rem; height: 3rem; text-align: center;animation-name:btn_animation13','cid':'','ctext':'','cstyle':''},
+          {'id':15,'bg':'les_12','aid':'','bid':'','atext':'点击分享海报','btext':'','astyle':'right:1rem; top: 10rem; width: 8rem; height: 3rem; text-align: right;animation-name: btn_animation1','bstyle':'','cid':'','ctext':'','cstyle':''},
+
+          {'id':16,'bg':'les_3','aid':'','bid':'','atext':'','btext':'','astyle':'','bstyle':'','cid':'','ctext':'','cstyle':''},
+          {'id':17,'bg':'les_10','aid':'','bid':'','atext':'点击分享海报','btext':'','astyle':'right:1rem;top: 15rem; width: 8rem;height: 3rem; text-align: center;animation-name: btn_animation9','bstyle':'','cid':'','ctext':'','cstyle':''},
+        ],
+        list2:[
+          {'id':31,'bg':'gay_1','aid':32,'bid':33,'cid':'',
+            'atext':'A. 好吧我承认了！<br>我就是gay',
+            'btext':'B. 唉，说不定只是错觉',
+            'ctext':'',
+            'astyle':'left:0.5rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'left:0rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation16',
+            'cstyle':''},
+          {'id':32,'bg':'gay_2','aid':34,'bid':42,'cid':'',
+            'atext':'A. 说出来吧！',
+            'btext':'B. 还是算了',
+            'ctext':'',
+            'astyle':'right: 1rem;top: 15rem;width: 8rem;height: 3rem;text-align: right;animation-name: btn_animation8;',
+            'bstyle':'left:3rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation14',
+            'cstyle':''},
+          {'id':33,'bg':'gay_3','aid':42,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:2rem;top: 15rem; width: 10rem;height: 3rem; text-align:right;animation-name: btn_animation16',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':34,'bg':'gay_4','aid':42,'bid':'','cid':'',
+            'atext':'A. blued',
+            'btext':'B. ColorsWorld',
+            'ctext':'C. 未名bbs boy版',
+            'astyle':'left:0.5rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'left:1.5rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; text-align: left; animation-name: btn_animation16',
+            'cstyle':'left:0rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation10'},
+          {'id':35,'bg':'gay_5','aid':38,'bid':39,'cid':'',
+            'atext':'<span style="color:#000000;"> A. 微胖留胡子的成熟大叔</span>',
+            'btext':'<span style="color:#000000;"> B. 高瘦而热情的同级同学</span>',
+            'ctext':'',
+            'astyle':'left:0.5rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'left:0rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation16',
+            'cstyle':''},
+          {'id':36,'bg':'gay_6','aid':38,'bid':39,'cid':40,
+            'atext':'<span style="color:#000000;"> A. 微胖留胡子的成熟大叔</span>',
+            'btext':'<span style="color:#000000;"> B. 高瘦而热情的同级同学</span>',
+            'ctext':'<span style="color:#000000;"> C. 单纯可爱的学弟</span>',
+            'astyle':'left:0.5rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation12',
+            'bstyle':'left:0rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation13',
+            'cstyle':'left:0rem; right:0rem; top: 10rem;text-align: right; width: 13rem; height: 3rem; animation-name: btn_animation14'},
+          {'id':37,'bg':'gay_7','aid':40,'bid':39,'cid':'',
+            'atext':'<span style="color:#000000;"> C. 单纯可爱的学弟</span>',
+            'btext':'<span style="color:#000000;"> B. 高瘦而热情的同级同学</span>',
+            'ctext':'',
+            'astyle':'left:0.5rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation18',
+            'bstyle':'left:0rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation17',
+            'cstyle':''},
+
+          {'id':38,'bg':'gay_8','aid':41,'bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> NEXT>>> </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'left:3rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation16',
+            'bstyle':'',
+            'cstyle':''},
+
+          {'id':39,'bg':'gay_9','aid':41,'bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> NEXT>>> </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'left:3rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':40,'bg':'gay_10','aid':41,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 5rem;height: 3rem; text-align: left;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':41,'bg':'gay_11','aid':46,'bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> NEXT>>> </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 5rem;height: 3rem; text-align: left;animation-name: btn_animation18',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':42,'bg':'gay_12','aid':35,'bid':43,'cid':'',
+            'atext':'<span style="color:#000000;"> A. 要！我要社交（男人） </span>',
+            'btext':'<span style="color:#000000;"> B. 算了，强行压制住 </span>',
+            'ctext':'',
+            'astyle':'left:1rem;top: 15rem; width: 13rem;height: 3rem; text-align: right;animation-name: btn_animation16',
+            'bstyle':'left:0rem; right:0rem; top: 10rem; width: 13rem; height: 3rem; animation-name: btn_animation10',
+            'cstyle':''},
+          {'id':43,'bg':'gay_13','aid':40,'bid':44,'cid':'',
+            'atext':'A. 接受学弟的表白',
+            'btext':'B. 拒绝',
+            'ctext':'',
+            'astyle':'left:1rem;top: 15rem; width: 13rem;height: 3rem; text-align: center;animation-name: btn_animation10',
+            'bstyle':'right:3rem; top: 10rem; width: 13rem; height: 3rem;text-align: right; animation-name: btn_animation19',
+            'cstyle':''},
+          {'id':44,'bg':'gay_14','aid':49,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 5rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':45,'bg':'gay_15_end','aid':50,'bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> 点击生成海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1rem;top: 15rem; width: 7rem;height: 3rem; text-align: right;animation-name: btn_animation18',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':46,'bg':'gay_16_end','aid':51,'bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> 点击生成海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1.5rem;top: 15rem; width: 7rem;height: 3rem; text-align: right;animation-name: btn_animation18',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':48,'bg':'gay_18_end','aid':52,'bid':'','cid':'',
+            'atext':'点击生成海报',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1.5rem;top: 15rem; width: 7rem;height: 3rem; text-align: right;animation-name: btn_animation18',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':49,'bg':'gay_19_end','aid':'','bid':'','cid':'',
+            'atext':'',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1.5rem;top: 15rem; width: 7rem;height: 3rem; text-align: right;animation-name: btn_animation18',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':50,'bg':'gay_20','aid':'','bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> 点击生成海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0;left:0;top: 15rem; width: 10rem;height: 3rem; text-align: center;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':51,'bg':'gay_21','aid':'','bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> 点击生成海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0;left:0;top: 15rem; width: 10rem;height: 3rem; text-align: center;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':52,'bg':'gay_22','aid':'','bid':'','cid':'',
+            'atext':'<span style="color:#000000;"> 点击生成海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0;left:0;top: 15rem; width: 10rem;height: 3rem; text-align: center;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''}
+        ],
+        list3:[
+          {'id':61,'bg':'bi1','aid':62,'bid':63,'cid':'',
+            'atext':'A. 性格温柔稳重<br>一直在引导你的学长',
+            'btext':'B. 性格活泼开朗<br>爱玩爱闹的同级同学',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation10',
+            'bstyle':'right:0rem; top: 10rem; width: 10rem;text-align: left; height: 3rem; animation-name: btn_animation12',
+            'cstyle':''},
+          {'id':62,'bg':'bi2','aid':63,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':63,'bg':'bi3_1','aid':64,'bid':65,'cid':'',
+            'atext':'A. 因为她是女生',
+            'btext':'B. 因为确实喜欢她，被她本人吸引',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation1',
+            'cstyle':''},
+          {'id':64,'bg':'bi3_2','aid':73,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':65,'bg':'bi4','aid':70,'bid':66,'cid':'',
+            'atext':'A. 既然这种感情无法理解，那么还是逃避克制为好',
+            'btext':'B. 虽然这种感情很奇怪，但仍然选择直面接受',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation11',
+            'bstyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation5',
+            'cstyle':''},
+          {'id':66,'bg':'bi5','aid':67,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: center;animation-name: btn_animation15',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':67,'bg':'bi6','aid':68,'bid':68,'cid':'',
+            'atext':'A. <br>虽然不太高兴，但他仍然耐心地询问你，是不是因为当时面对的出柜压力太大，所以才做出了这样的选择。如果是这样，他建议你放弃这段违背自己真实意愿的感情，并表示自己不会再像曾经那样强求你出柜，询问你们是否可以复合。',
+            'btext':'B. <br>他也十分愤怒，斥责你当初与他交往，只是为了是寻求一时新鲜，欺骗了他的感情。并且声讨你是个渣男，威胁你要将这件事告诉你的女朋友。',
+            'ctext':'',
+            'astyle':'left:0.5rem;top: 15rem; width: 15rem;height: 6rem; text-align: left;animation-name: btn_animation7',
+            'bstyle':'left:0.5rem;top: 15rem; width: 15rem;height: 6rem; text-align: left;animation-name: btn_animation20',
+            'cstyle':''},
+          {'id':68,'bg':'bi7_1','aid':69,'bid':70,'cid':'',
+            'atext':'A. <br>双性恋取向很难被其他人理解，况且从此两个人也不会再有交集，不如不要解释。',
+            'btext':'B. <br>尽管双性恋还没有被大多数人理解，但为了对自己、前男友和女友负责，仍然要试图向对方解释。',
+            'ctext':'',
+            'astyle':'left:1rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation7',
+            'bstyle':'left:1rem;top: 15rem; width: 13rem;height: 3rem; text-align: left;animation-name: btn_animation5',
+            'cstyle':''},
+          {'id':69,'bg':'bi7_2','aid':74,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'left:1rem;top: 15rem; width: 15rem;height: 3rem; text-align: center;animation-name: btn_animation15',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':70,'bg':'bi8','aid':71,'bid':72,'cid':'',
+            'atext':'A.<br> 因为不愿意向女友承认自己是作为少数群体的双性恋，所以只是反复向她保证自己一定不会那样做。',
+            'btext':'<span style="color:#000000;"> B. <br>尽管双性恋还没有被大多数人理解，但对于爱人应该坦诚，并且你相信自己的爱人十分善解人意，所以选择了耐心地给她讲解。</span>',
+            'ctext':'',
+            'astyle':'left:1rem;top: 15rem; width: 10rem;height: 6rem; text-align: left;animation-name: btn_animation15',
+            'bstyle':'left:1rem;top: 15rem; width: 10rem;height: 6rem; text-align: left;animation-name: btn_animation18',
+            'cstyle':''},
+          {'id':71,'bg':'bi8_2','aid':73,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1rem;top: 15rem; width: 10rem;height: 3rem; text-align: right;animation-name: btn_animation6',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':72,'bg':'bi8_3','aid':75,'bid':'','cid':'',
+            'atext':'NEXT>>>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1rem;top: 15rem; width: 10rem;height: 3rem; text-align: right;animation-name: btn_animation6',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':73,'bg':'bi9_end','aid':76,'bid':'','cid':'',
+            'atext':'点击生成海报',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:0rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':74,'bg':'bi10_end','aid':77,'bid':'','cid':'',
+            'atext':'点击生成海报',
+            'btext':'',
+            'ctext':'',
+            'astyle':'left:1rem;top: 15rem; width: 10rem;height: 3rem; text-align: left;animation-name: btn_animation16',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':75,'bg':'bi11_end','aid':78,'bid':'','cid':'',
+            'atext':'点击生成海报',
+            'btext':'',
+            'ctext':'',
+            'astyle':'right:1rem;top: 15rem; width: 10rem;height: 3rem; text-align: right;animation-name: btn_animation10',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':76,'bg':'bi12','aid':'','bid':'','cid':'',
+            'atext':'<span style="color:#000000;">长按保存海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':77,'bg':'bi13','aid':'','bid':'','cid':'',
+            'atext':'<span style="color:#000000;">长按保存海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'',
+            'bstyle':'',
+            'cstyle':''},
+          {'id':78,'bg':'bi14','aid':'','bid':'','cid':'',
+            'atext':'<span style="color:#000000;">长按保存海报 </span>',
+            'btext':'',
+            'ctext':'',
+            'astyle':'',
+            'bstyle':'',
+            'cstyle':''}
+        ],
+        
+
+      }
+    },
+    methods:{
+      turnPersonChoose1(){
+        this.$store.commit('changeList',this.list1)
+        this.$router.push({path:'/personChoose'})
+      },
+      turnPersonChoose2(){
+        this.$store.commit('changeList',this.list2)
+        this.$router.push({path:'/personChoose'})
+      },
+      turnPersonChoose3(){
+        this.$store.commit('changeList',this.list3)
+        this.$router.push({path:'/personChoose'})
+      },
+      turnPersonChoose4(){
+        this.$store.commit('changeList',this.list4)
+        this.$router.push({path:'/personChoose'})
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  .chooseIndex{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    width: 5rem;
+    height: 3rem;
+    text-align: right;
+    font-weight: 300;
+    font-size: 1rem;
+    padding-bottom: 0;
+    color: #ffffff;
+    margin-top:20px;
+  }
+  .choose{
+    font-weight: bold;
+    line-height:3rem;
+    text-align:center;
+  }
+  .choose1{
+    right: 1.5rem;
+    top: 3rem;
+    width: 8rem;
+    height: 3rem;
+    animation-name: btn_animation4;
+  }
+  .choose2{
+    left: 2.5rem;
+    top: 3rem;
+    width: 8rem;
+    height: 3rem;
+    text-align: left;
+    animation-name: btn_animation7;
+  }
+  .choose3{
+    right: 3rem;
+    top: 3rem;
+    width: 8rem;
+    height: 3rem;
+    text-align: right;
+    animation-name: btn_animation6;
+  }
+  .choose4{
+    left: 5rem;
+    top: 15.5rem;
+    width: 8rem;
+    height: 3rem;
+    text-align: left;
+    animation-name: btn_animation5;
+  }
+</style>
